@@ -5,7 +5,8 @@ const handlebars  = require('express-handlebars')
 const app = express()
 const port = 2002
 
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, 'public/client-template/')));     
+app.use(express.static(path.join(__dirname, 'public/admin-template/')));          
 // HTTP logger
 app.use(morgan('combined'))
 
@@ -14,31 +15,17 @@ app.engine('hbs', handlebars({
     extname: '.hbs'
 }))
 app.set('view engine', 'hbs');
-app.set('views', path.join(__dirname, 'resources/views'));
+app.set('views', [path.join(__dirname, 'resources/views/admin/'),
+                  path.join(__dirname, 'resources/views/client/')]);
 
-app.get('/trang-chu', (req, res) => {
-  res.render('home');
-})
+const route = require ('./routes');
 
-app.get('/san-pham', (req, res) => {
-  res.render('product');
-})
+app.use(express.urlencoded({
+  extended: true
+}));
 
-app.get('/loai-san-pham', (req, res) => {
-  res.render('category');
-})
-
-app.get('/gio-hang', (req, res) => {
-  res.render('cart');
-})
-
-app.get('/thanh-toan', (req, res) => {
-  res.render('checkout');
-})
-
-app.get('/lien-he', (req, res) => {
-  res.render('contact');
-})
+// Routes init 
+route(app);
 
 app.listen(port, () => {
   console.log(`App listening at http://localhost:${port}`)
