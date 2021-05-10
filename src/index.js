@@ -6,7 +6,7 @@ const app = express()
 const port = 2002
 
 app.use(express.static(path.join(__dirname, 'public/client-template/')));     
-app.use(express.static(path.join(__dirname, 'public/admin-template/')));          
+app.use('/static-admin', express.static(path.join(__dirname, 'public/admin-template/')));          
 // HTTP logger
 app.use(morgan('combined'))
 
@@ -24,6 +24,9 @@ app.use(express.urlencoded({
   extended: true
 }));
 
+app.get('/admin', (req, res) => {
+  res.render('index');
+})
 // Routes init 
 route(app);
 
