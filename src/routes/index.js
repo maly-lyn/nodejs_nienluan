@@ -6,7 +6,7 @@ function route(app) {
 
     app.use ('/checkout', customerRouter);
 
-    app.use ('/user', authRouter);
+    app.use ('/', authRouter);
 
     app.use ('/', homeRouter);
     
