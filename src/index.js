@@ -23,6 +23,7 @@ const port = 2002
 app.use(morgan('combined'))
 
 // Template engine
+
 app.engine('hbs', handlebars({
     extname: '.hbs'
 }))
@@ -64,13 +65,17 @@ var upload = multer({
     }
 }).single("imageProduct");
 
-// Them san pham
+//Them san pham
 app.get('/add-product', function (req, res){
-    res.render('./sanpham/index');
-}); 
+  res.render('./sanpham/add');
+});
 //Sua san pham
 app.get('/edit-product', function (req, res){
   res.render('./sanpham/edit');
+}); 
+// Danh sach san pham
+app.get('/list-product', function (req, res){
+    res.render('./sanpham/index');
 }); 
 
 app.post('/handle-add-product',  function(req, res){
