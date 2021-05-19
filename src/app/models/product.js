@@ -1,5 +1,4 @@
 var mongoose = require("mongoose");
-
 var schemaProduct = new mongoose.Schema({
     Name: String,
     Image: String,
