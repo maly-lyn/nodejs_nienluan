@@ -15,8 +15,13 @@ var storage = multer.diskStorage({
 class ProductController {
 
     //[GET] /list-product
-    list(req, res) {
-        res.render("sanpham/list");
+    list(req, res, next) {
+        Product.find({})
+            .then(products => {
+                products = products.map(product => product.toObject())
+                res.render("sanpham/list", { products });
+            })
+            .catch(next);
     }
     //[GET] /add-product
     add(req, res) {
@@ -47,12 +52,13 @@ class ProductController {
                 //Save Mongo (req.file.filename)
                 // res.send(req.file.filename);
                 var product = Product ({
-                  Name: req.body.productName,
+                  Name: req.body.nameProduct,
                   Image: req.file.filename,
-                  Describe: req.body.productDescribe,
-                  Quantity: req.body.productQuantity,
-                  Price: req.body.productPrice
+                  Describe: req.body.describeProduct,
+                  Quantity: req.body.quantityProduct,
+                  Price: req.body.priceProduct
                 });
+                console.log(product);
                 product.save(function(err){
                   if(err){
                     res.json({"kq":0, "errMsg":err});
@@ -64,7 +70,7 @@ class ProductController {
       
           }
         );
-        
+
     }
 }
 

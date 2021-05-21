@@ -20,7 +20,8 @@ app.set('views', [path.join(__dirname, 'resources/views/admin/'),
                   path.join(__dirname, 'resources/views/client/')]);                  
 // // Set Static Folder 
 app.use(express.static(path.join(__dirname, 'public/client-template/')));     
-app.use('/static-admin', express.static(path.join(__dirname, 'public/admin-template/')));          
+app.use('/static-admin', express.static(path.join(__dirname, 'public/admin-template/')));
+app.use('/image', express.static(path.join(__dirname, 'public/upload')));          
 
 //body-parser
 var bodyParser = require('body-parser');

@@ -9,112 +9,40 @@
 		      <thead>
 		        <tr>
 		          <th>STT</th>
-                  <th>ID</th>
                   <th>Tên sản phẩm</th>
-                  <th>Giá</th>
-                  <th>Số lượng</th>
-                  <th>Loại</th>
                   <th>Hình ảnh</th>
+                  <th>Mô tả</th>
+                  <th>Số lượng</th>
+                  <th>Giá</th>
                   <th colspan="3" style="text-align: center;">Thao tác</th>
 		        </tr>
 		      </thead>
 		      <tbody>
+				{{#each products}}
 		        <tr class="active">
-		          <th scope="row">1</th>
-		          <td>Column content</td>
-		          <td>Column content</td>
-		          <td>Column content</td>
-                  <td>Column content</td>
-		          <td>Column content</td>
-		          <td>Column content</td>
+		          <th scope="row" id="demo"></th>
+		          <td>{{this.Name}}</td>
+		          <td><img src="/image/{{this.Image}}" alt="khong co hinh anh" height="50px" width="80px"></td>
+                  <td>{{this.Describe}}</td>
+		          <td>{{this.Quantity}}</td>
+		          <td>{{this.Price}}</td>
 				  <td><a href="" class="btn-primary btn">Chi tiết</a></td>
 				  <td><a href='edit-product' style="background-color: #ef553a !important; border: #ef553a;" class="btn-primary btn">Sửa</a></td>
 				  <td><a href="" class="btn-danger btn" onclick="return xoa()">Xóa</a></td>
 		        </tr>
-		        <tr>
-		          <th scope="row">2</th>
-		          <td>Column content</td>
-		          <td>Column content</td>
-		          <td>Column content</td>
-                  <td>Column content</td>
-		          <td>Column content</td>
-		          <td>Column content</td>
-                  <td><a href="" class="btn-primary btn">Chi tiết</a></td>
-                  <td><a href='/edit-product' style="background-color: #ef553a !important; border: #ef553a;" class="btn-primary btn">Sửa</a></td>
-                  <td><a href="" class="btn-danger btn" onclick="return xoa()">Xóa</a></td>
-		        </tr>
-		        <tr class="success">
-		          <th scope="row">3</th>
-		          <td>Column content</td>
-		          <td>Column content</td>
-		          <td>Column content</td>
-                  <td>Column content</td>
-		          <td>Column content</td>
-		          <td>Column content</td>
-                  <td><a href="" class="btn-primary btn">Chi tiết</a></td>
-                  <td><a href='/edit-product' style="background-color: #ef553a !important; border: #ef553a;" class="btn-primary btn">Sửa</a></td>
-                  <td><a href="" class="btn-danger btn" onclick="return xoa()">Xóa</a></td>
-		        </tr>
-		        <tr>
-		          <th scope="row">4</th>
-		          <td>Column content</td>
-		          <td>Column content</td>
-		          <td>Column content</td>
-                  <td>Column content</td>
-		          <td>Column content</td>
-		          <td>Column content</td>
-                  <td><a href="" class="btn-primary btn">Chi tiết</a></td>
-                  <td><a href='/edit-product' style="background-color: #ef553a !important; border: #ef553a;" class="btn-primary btn">Sửa</a></td>
-                  <td><a href="" class="btn-danger btn" onclick="return xoa()">Xóa</a></td>
-		        </tr>
-		        <tr class="info">
-                  <th scope="row">5</th>
-		          <td>Column content</td>
-		          <td>Column content</td>
-		          <td>Column content</td>
-                  <td>Column content</td>
-		          <td>Column content</td>
-		          <td>Column content</td>
-                  <td><a href="" class="btn-primary btn">Chi tiết</a></td>
-                      <td><a href='/edit-product' style="background-color: #ef553a !important; border: #ef553a;" class="btn-primary btn">Sửa</a></td>
-                      <td><a href="" class="btn-danger btn" onclick="return xoa()">Xóa</a></td>
-		        </tr>
-		        <tr>
-		          <th scope="row">6</th>
-		          <td>Column content</td>
-		          <td>Column content</td>
-		          <td>Column content</td>
-                  <td>Column content</td>
-		          <td>Column content</td>
-		          <td>Column content</td>
-                  <td><a href="" class="btn-primary btn">Chi tiết</a></td>
-                      <td><a href='/edit-product' style="background-color: #ef553a !important; border: #ef553a;" class="btn-primary btn">Sửa</a></td>
-                      <td><a href="" class="btn-danger btn" onclick="return xoa()">Xóa</a></td>
-		        </tr>
-		        <tr class="warning">
-		          <th scope="row">7</th>
-		          <td>Column content</td>
-		          <td>Column content</td>
-		          <td>Column content</td>
-                  <td>Column content</td>
-		          <td>Column content</td>
-		          <td>Column content</td>
-                 <td><a href="" class="btn-primary btn">Chi tiết</a></td>
-                      <td><a href='/edit-product' style="background-color: #ef553a !important; border: #ef553a;" class="btn-primary btn">Sửa</a></td>
-                      <td><a href="" class="btn-danger btn" onclick="return xoa()">Xóa</a></td>
-		        </tr> 
+				{{/each}}
 		      </tbody>
 		    </table>
 		</div>
            <script>
-        function xoa(){
-            const a = confirm('Bạn có muốn xóa sản phẩm này không?');
-            if (a==true){
-                return true;
-            }
-            return false;
-        }
-    </script>
+        		function xoa(){
+            	const a = confirm('Bạn có muốn xóa sản phẩm này không?');
+            	if (a==true){
+                	return true;
+            	}
+            	return false;
+        		}
+    		</script>
       <!-- /#page-wrapper -->
     {{> footer}}
     </div>
