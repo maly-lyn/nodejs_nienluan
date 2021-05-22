@@ -21,7 +21,7 @@ function route(app) {
     router.post('/handle-add-product', productController.multerUpload.single("productImage"), productController.upload);
     router.get('/products/:id/edit-product', productController.edit);
     router.put('/products/:id', productController.multerUpload.single("productImage"), productController.update);
-    router.get('/products/:slug', productController.show);
+    router.delete('/products/:id', productController.destroy);
 
     router.get('/register', authController.register);
     router.get('/login', authController.login);

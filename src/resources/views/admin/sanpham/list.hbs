@@ -26,23 +26,26 @@
                   <td>{{this.Describe}}</td>
 		          <td>{{this.Quantity}}</td>
 		          <td>{{this.Price}}</td>
-				  <td><a href="/products/{{this.slug}}" class="btn-primary btn">Chi tiết</a></td>
 				  <td><a href='/products/{{this._id}}/edit-product' style="background-color: #ef553a !important; border: #ef553a;" class="btn-primary btn">Sửa</a></td>
-				  <td><a href="" class="btn-danger btn" onclick="return xoa()">Xóa</a></td>
+				  <td><a href="" class="btn-danger btn" data-id={{this._id}} onclick="return xoa(this.getAttribute('data-id'))">Xóa</a></td>
 		        </tr>
 				{{/each}}
 		      </tbody>
 		    </table>
 		</div>
-           <script>
-        		function xoa(){
-            	const a = confirm('Bạn có muốn xóa sản phẩm này không?');
-            	if (a==true){
-                	return true;
-            	}
-            	return false;
-        		}
-    		</script>
+		<script>
+			function xoa(id){
+				let del = confirm('Bạn có muốn xóa sản phẩm này không?');
+
+				if (del) {
+					fetch('/products/' + id, {method: 'DELETE'}).then(
+						res => window.location.href = "/list-product"
+					)
+				}
+
+				return false;
+			}
+		</script>
       <!-- /#page-wrapper -->
     {{> footer}}
     </div>

@@ -30,14 +30,6 @@ class ProductController {
     
   }
 
-  // [GET] /products/:slug
-  show(req, res, next) {
-      Product.findOne({ slug: req.params.slug })
-            .then(product=> {
-                res.json('product');
-            })
-            .catch (next);
-  }
   //[GET] /list-product
   list(req, res, next) {
       Product.find({})
@@ -79,6 +71,13 @@ class ProductController {
           .catch(next);
   }
 
+  //[DELETE] /products/:id
+  destroy (req, res, next) {
+    Product.find({ _id: req.params.id }).remove().exec();
+    res.redirect('/list-product');
+  }
+
+  //[POST] /handle-add-product
   upload(req, res, next) {
     console.log(req.file);
 
