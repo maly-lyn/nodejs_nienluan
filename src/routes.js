@@ -16,10 +16,12 @@ function route(app) {
     router.get('/cart', homeController.cart);
     router.get('/contact', homeController.contact);
 
-    router.get("/list-product", productController.list);
-    router.get("/add-product", productController.add);
-    router.get("/edit-product", productController.edit);
-    router.post("/handle-add-product", productController.upload);
+    router.get('/list-product', productController.list);
+    router.get('/add-product', productController.add);
+    router.post('/handle-add-product', productController.upload);
+    router.get('/products/:id/edit-product', productController.edit);
+    router.put('/products/:id', productController.multerUpload.single("productImage"), productController.update);
+    router.get('/products/:slug', productController.show);
 
     router.get('/register', authController.register);
     router.get('/login', authController.login);
