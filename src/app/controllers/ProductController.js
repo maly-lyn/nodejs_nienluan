@@ -91,7 +91,7 @@ class ProductController {
     
     product.save();
 
-    res.render ("sanpham/add");
+    res.redirect('/list-product');
   }
 }
 
