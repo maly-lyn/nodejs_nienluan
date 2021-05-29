@@ -60,6 +60,7 @@ class HomeController {
             delete req.session.cart[req.body.id]
 
         console.log(req.session.cart);
+        
         res.send('ok');
     }
 

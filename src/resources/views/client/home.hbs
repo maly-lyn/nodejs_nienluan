@@ -102,7 +102,12 @@
 					fetch('/add-to-cart', reqOptions).then(
 						res => res.text()
 					).then(
-						data => console.log(data)
+						data => {
+							if (data == 'ok') {
+								let cartCnt = document.getElementById('cart-cnt');
+								cartCnt.innerHTML = parseInt(cartCnt.innerHTML) + 1;
+							}
+						}
 					);
 				}
 			</script>
