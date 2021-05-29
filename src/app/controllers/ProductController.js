@@ -79,7 +79,7 @@ class ProductController {
 
   //[POST] /handle-add-product
   upload(req, res, next) {
-    console.log(req.file);
+    console.log(req.body);
 
     var product = Product ({
       Name: req.body.nameProduct,

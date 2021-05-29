@@ -2,14 +2,22 @@
 var Product = require("../models/product");
 const { multipleMongooseToObject } = require ('../../util/mongoose');
 const { mongooseToObject } = require ('../../util/mongoose');
+
 class HomeController {
 
     //[GET] /
     index (req, res, next) {
+        let cnt = 0;
+        if (!req.session.cart) req.session.cart = {};
+        Object.keys(req.session.cart).forEach(k => {
+            cnt += req.session.cart[k];
+        });
+        
         Product.find({})
           .then(products => {
               res.render('home', { 
-                  products: multipleMongooseToObject(products)
+                  products: multipleMongooseToObject(products),
+                  cart_cnt: cnt
               });
           })
           .catch(next);
@@ -39,11 +47,21 @@ class HomeController {
         res.render('cart');
     }
 
-    // //[GET] /add-to-cart/:id 
-    // addToCart (req, res, next) {
-    //     var productId = req.params.id;
-    //     var cart = new Cart(req.cart);
-    // }
+    addToCart(req, res, next) {
+        if (!req.session.cart)
+            req.session['cart'] = {};
+
+        if (!req.session.cart[req.body.id])
+            req.session.cart[req.body.id] = 0;
+
+        req.session.cart[req.body.id] += req.body.amount;
+
+        if (req.session.cart[req.body.id] <= 0)
+            delete req.session.cart[req.body.id]
+
+        console.log(req.session.cart);
+        res.send('ok');
+    }
 
     // [GET] /contact
     contact (req, res) {

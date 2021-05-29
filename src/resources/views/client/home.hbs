@@ -87,6 +87,25 @@
 			<div class="section-title">
 				<h2>GIỚI THIỆU SẢN PHẨM</h2>
 			</div>
+			<script>
+				function addToCart(id) {
+					const reqOptions = {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json'
+						},
+						body: JSON.stringify({
+							id: id,
+							amount: 1
+						})
+					};
+					fetch('/add-to-cart', reqOptions).then(
+						res => res.text()
+					).then(
+						data => console.log(data)
+					);
+				}
+			</script>
 			<div class="row">
 				{{#each products}}
 				<div class="col-lg-3 col-sm-6">
@@ -94,7 +113,7 @@
 						<div class="pi-pic">
 							<a href="/product/{{this._id}}"><img src="/image/{{this.Image}}" alt=""></a>
 							<div class="pi-links">
-								<a href='/add-to-cart' class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
+								<a style="cursor: pointer" onclick="addToCart('{{this._id}}')" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
 								<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
 							</div>
 						</div>
