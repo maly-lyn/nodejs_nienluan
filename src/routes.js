@@ -14,6 +14,7 @@ function route(app) {
     router.get('/product/:id', homeController.product);
     router.get('/cart', homeController.cart);
     app.post('/add-to-cart', homeController.addToCart);
+    router.get('/get-cart-products', homeController.getCartProducts);
     router.get('/contact', homeController.contact);
 
     router.get('/list-product', productController.list);

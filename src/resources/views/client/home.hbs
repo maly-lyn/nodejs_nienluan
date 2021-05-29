@@ -1,4 +1,3 @@
-
 	<!-- Hero section -->
 	<section class="hero-section">
 		<div class="hero-slider owl-carousel">
@@ -54,6 +53,31 @@
 	</section>
 	<!-- Hero section end -->
 
+	<script>
+		function addToCart(id) {
+			const reqOptions = {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({
+					id: id,
+					amount: 1
+				})
+			};
+			fetch('/add-to-cart', reqOptions).then(
+				res => res.text()
+			).then(
+				data => {
+					if (data == 'ok') {
+						let cartCnt = document.getElementById('cart-cnt');
+						cartCnt.innerHTML = parseInt(cartCnt.innerHTML) + 1;
+					}
+				}
+			);
+		}
+	</script>
+
 	<!-- letest product section -->
 	<section class="top-letest-product-section">
 		<div class="container">
@@ -61,19 +85,21 @@
 				<h2>SẢN PHẨM MỚI NHẤT</h2>
 			</div>
 			<div class="product-slider owl-carousel">
+				{{#each new}}
 				<div class="product-item">
 					<div class="pi-pic">
-						<img src="./shirts/shirt-1.jpg" alt="">
+						<img src="/image/{{this.Image}}" alt="">
 						<div class="pi-links">
-							<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
+							<a style="cursor: pointer" onclick="addToCart('{{this._id}}')" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
 							<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
 						</div>
 					</div>
 					<div class="pi-text">
-						<h6>$35,00</h6>
-						<p>BestDad in the Galaxy</p>
+						<h6>{{this.Price}}</h6>
+						<p>{{this.Name}}</p>
 					</div>
 				</div>
+				{{/each}}
 			</div>
 		</div>
 	</section>
