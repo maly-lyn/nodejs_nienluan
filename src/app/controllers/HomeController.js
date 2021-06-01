@@ -96,8 +96,19 @@ class HomeController {
     }
 
     // [GET] /contact
-    contact (req, res) {
-        res.render('contact');
+    contact (req, res, next) {
+        Product.find({})
+          .then(products => {
+            let stuff = multipleMongooseToObject(products);
+            let newProducts = [];
+            for (let i = 0; i < 4; ++i) newProducts.push(stuff[i]);
+              res.render('contact', { 
+                  products: multipleMongooseToObject(products),
+                  new: newProducts,
+                  cart_cnt: getCartCnt(req)
+              });
+          })
+          .catch(next);
     }
 }
 
