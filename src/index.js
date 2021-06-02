@@ -10,7 +10,13 @@ const port = 2002;
 //body-parser
 // var bodyParser = require('body-parser');
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded(
+{ 
+  extended: true 
+}));
+
+//middleware truoc khi vao trang admin
+
 
 //session
 app.use(session({
