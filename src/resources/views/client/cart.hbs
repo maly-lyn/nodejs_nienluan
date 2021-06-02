@@ -26,6 +26,7 @@
 									<th class="quy-th">Số lượng</th>
 									<th class="size-th">Đơn giá</th>
 									<th class="total-th">Giá</th>
+									<th class="total-th">Thao tác</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -45,6 +46,12 @@
 									</td>
 									<td class="size-col"><h4 class="_js-product-price">{{this.Price}}</h4></td>
 									<td class="total-col"><h4 class="_js-product-total"></h4></td>
+									<td>
+										<form action="" method="POST">
+											<input type="hidden" name="prodId" value="{{this._id}}">
+											<button type="submit" class="btn btn-secondary">Delete</button>
+										</form>
+									</td>
 								</tr>
 								{{/each}}
 							</tbody>

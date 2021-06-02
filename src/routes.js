@@ -13,9 +13,11 @@ function route(app) {
     router.get('/', homeController.index);
     router.get('/product/:id', homeController.product);
     router.get('/cart', homeController.cart);
+    //router.post('/delete-cart', homeController.deleteInCart);
     app.post('/add-to-cart', homeController.addToCart);
     router.get('/get-cart-products', homeController.getCartProducts);
     router.get('/contact', homeController.contact);
+    router.get('/signup', homeController.signup);
 
     router.get('/list-product', productController.list);
     router.get('/add-product', productController.add);

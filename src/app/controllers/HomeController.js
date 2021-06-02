@@ -110,6 +110,11 @@ class HomeController {
           })
           .catch(next);
     }
+
+    signup (req, res, next)
+    {        
+        res.render ('signup');
+    }
 }
 
 module.exports = new HomeController;
