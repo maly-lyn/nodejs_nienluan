@@ -82,11 +82,11 @@ class ProductController {
     console.log(req.body);
 
     var product = Product ({
-      Name: req.body.nameProduct,
-      Image: req.file.filename,
-      Describe: req.body.describeProduct,
-      Quantity: req.body.quantityProduct,
-      Price: req.body.priceProduct
+        Name: req.body.nameProduct,
+        Image: req.file.filename,
+        Describe: req.body.describeProduct,
+        Quantity: req.body.quantityProduct,
+        Price: req.body.priceProduct
     });
     
     product.save();

@@ -25,7 +25,9 @@ function route(app) {
     router.delete('/products/:id', productController.destroy);
 
     router.get('/register', authController.register);
+    router.post('/handle-register', authController.handleRegister);
     router.get('/login', authController.login);
+    router.post('/handle-login', authController.handleLogin);
     router.get('/admin', authController.index);
 
     app.use ('/', router);

@@ -15,8 +15,18 @@ app.use(express.urlencoded(
   extended: true 
 }));
 
-//middleware truoc khi vao trang admin
 
+//middleware truoc khi vao trang admin
+app.use('/admin', authentication);
+app.use('/add-product', authentication);
+app.use('/list-product', authentication);
+function authentication (req, res, next){
+    if (['vethuong', 'vevip'].includes(req.query.ve)) {
+        req.face = 'Gach gach gach!!!';
+        return next();
+    }
+    res.render ('login');
+}
 
 //session
 app.use(session({
