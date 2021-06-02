@@ -28,14 +28,14 @@ class AuthController {
         
         user.save();
     
-        res.redirect('/admin');
+        res.render('index');
       }
     // [GET] /login
     login (req, res) {
         res.render('login');
     }
 
-    handleLogin (req, res, next) 
+    handleLogin (req, res) 
     {
         let username = req.body.username;
         let password = req.body.password;
